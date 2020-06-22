@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Move your hands</title>
+        <style type="text/css">
+            html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+            }
+
+            canvas {
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+            .message {
+                text-align: center;
+                position: absolute;
+                bottom: 0;
+                padding: 20px;
+                font-size: 20px;
+                text-shadow: 3px 3px 3px #000;
+                color: white;
+                font-family: sans-serif;
+                width: 100vw;
+            }
+
+            video {
+                display: none;
+            }
+
+            .scene {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                transform-style: preserve-3d;
+                perspective: 10vw;
+            }
+
+            .room {
+                transform: translateZ(-45vw);
+                transform-style: preserve-3d;
+            }
+
+            .wall {
+                width: 100vw;
+                height: 100vh;
+                position: absolute;
+                background-image: url('assets/grid.png');
+                background-size: cover;
+                transform-origin: top left;
+            }
+
+            .floor, .ceiling {
+                height: 100vw;
+            }
+
+            .ceiling {
+                transform: rotateX(90deg);
+            }
+
+            .floor {
+                transform: translateZ(100vw) translateY(100vh) rotateX(-90deg);
+            }
+
+            .left {
+                transform: translateZ(100vw) rotateY(90deg);
+            }
+
+            .right {
+                transform: translateX(100vw) rotateY(-90deg);
+            }
+
+            /* defaults */
+            :root {
+                --x: 0;
+                --y: 0;
+                --z: 1px;
+            }
+
+            .red-circle {
+                width: 100px;
+                height: 100px;
+                border-radius: 100px;
+                background-color: red;
+                position: absolute;
+                transform: translate3D(var(--x), var(--y), var(--z));
+                transform-style: preserve-3d;
+            }
+
+            .red-circle::after {
+                display: block;
+                content: " ";
+                position: absolute;
+                width: 300vw;
+                height: 10px;
+                background: white;
+                transform-origin: top left;
+                transform: translate3D(50px, 45px, 0) rotateY(90deg);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="scene">
+            <div class="room">
+                <div class="wall floor"></div>
+                <div class="wall ceiling"></div>
+                <div class="wall left"></div>
+                <div class="wall right"></div>
+                <div class="wall back"></div>
+                <div class="red-circle" style="--x: 90vw; --y: 10vh"></div>
+                <div class="red-circle" style="--z: 200px"></div>
+                <div class="red-circle" style="--x: 50vw; --y: 50vh; --z: 52vw"></div>
+                <div class="red-circle" style="--x: 25vw; --y: 70vh; --z: 35vw"></div>
+            </div>
+        </div>
+        <video autoplay></video>
+        <div class="message">Loading model...</div>
+        <script src="index.js"></script>
+    </body>
+</html>
