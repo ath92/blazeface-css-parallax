@@ -1,8 +1,8 @@
 import * as blazeface from '@tensorflow-models/blazeface';
 import '@tensorflow/tfjs-backend-webgl';
 
-const strength = 40;
-const amountOfSmoothingValues = 3;
+const strength = 10;
+const amountOfSmoothingValues = 4;
 
 (async () => {
     // Pass in a video stream to the model to obtain 
